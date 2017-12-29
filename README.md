@@ -5,6 +5,5 @@
 
 
 ### Python版本与依赖库：
----
   * python3.6 + : https://www.python.org/
-  * Django2.0 : https://www.djangoproject.com/ 
+  * Django2.0 : https://www.djangoproject.com/
