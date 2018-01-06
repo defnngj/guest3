@@ -3,6 +3,13 @@
     <title>Django Page</title>
   </head>
   <body>
-    <h1>Hello Django!</h1>
+    <h1>发布会管理</h1>
+    <form method="post" action="/login_action/">
+      <input name="username" type="text" placeholder="username" ><br>
+      <input name="password" type="password" placeholder="password"><br>
+      <font color="red">{{error}} <br></font>
+      <button id="btn" type="submit">登录</button>
+      {% csrf_token %}
+    </form>
   </body>
 </html>
