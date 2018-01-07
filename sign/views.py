@@ -44,17 +44,3 @@ def logout(request):
     auth.logout(request) #退出登录
     response = HttpResponseRedirect('/index/')
     return response
-
-
-
-'''
-0、通过表单或链接
-<a href="/index/">Index</a>
-1、指定路径
-http://127.0.0.1:8000/index/
-2、打开url配置文件 settings.py
-ROOT_URLCONF = 'guest2.urls'
-3、urls.py 找到 views
-path('index/', views.index),
-4、index 函数返回HttpResponse 对应
-'''
