@@ -18,11 +18,26 @@ from django.urls import path
 from sign import views
 
 
+# 路由文件
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.index),
     path('index/', views.index),
+    path('', views.index),
+    path('accounts/login/', views.index),
     path('login_action/', views.login_action),
     path('event_manage/', views.event_manage),
+    path('logout/', views.logout)
 
 ]
+
+
+
+
+
+
+
+
+
+
+
+#
