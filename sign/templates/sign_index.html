@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block content %}
+
+    <!-- 导航栏 -->
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">{{ event.name }}</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="/event_manage/">发布会</a></li>
+            <li><a href="/guest_manage/">嘉宾</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+           <li><a href="">已签到：{{sign}} | 嘉宾：{{guest}}</a></li>
+         </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+    <div class="container theme-showcase" role="main">
+
+      <!--签到表单-->
+      <div class="row" style="margin-top:120px">
+        <div class="col-lg-6">
+          <form class="bs-example bs-example-form" role="form" action="/sign_index_action/{{ event.id }}/" method="post">
+          <div class="input-group">
+            <div style="float:left;">
+              <input type="text" class="form-control" placeholder="输入手机号" name="phone">
+            </div>
+            <div style="float:left;">
+              <button type="submit" class="btn btn-success">签到</button><br>
+            <div>
+          </div><!-- /input-group -->
+
+          </form>
+        </div><!-- /.col-lg-6 -->
+      </div><!-- /.row -->
+      <div>
+        <font color="red">
+          <br>{{hint}}
+          <br>{{user.realname}}&nbsp&nbsp{{user.phone}}
+        </font>
+      </div>
+    </div> <!-- /container   glyphicon glyphicon-phone border-style:none; -->
+
+{% endblock %}

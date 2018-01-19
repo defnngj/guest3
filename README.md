@@ -5,6 +5,7 @@
 
 
 ### Python版本与依赖库：
-  * python3.6 + : https://www.python.org/
-  * Django2.0 : https://www.djangoproject.com/
-  * PyMySQL0.8.0: https://github.com/PyMySQL/PyMySQL
+  * python 3.6 + : https://www.python.org/
+  * Django 2.0 : https://www.djangoproject.com/
+  * PyMySQL 0.8.0: https://github.com/PyMySQL/PyMySQL
+  * django-bootstrap3 9.1.0：https://github.com/dyve/django-bootstrap3
