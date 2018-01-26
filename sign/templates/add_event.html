@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+{% block content %}
+
+    <!-- 导航栏 -->
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="/event_manage/">Guest Manage System</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">发布会</a></li>
+            <li><a href="/guest_manage/">嘉宾</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+           <li><a href="#">{{user}}</a></li>
+           <li><a href="/logout/">退出</a></li>
+         </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+
+    <!--添加发布会表单-->
+      <div class="row" style="margin-top: 80px;">
+        <div class="page-header">
+            <h3 style="margin-left: 100px;"> 添加发布会 </h3>
+        </div>
+
+        <div class="col-md-6" style="width: 500px;">
+
+          <form class="form-horizontal" role="form" action="/add_event_action/" method="post">
+
+            <div class="form-group">
+              <label for="firstname" class="col-sm-2 control-label">名称</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="firstname" placeholder="发布会名称">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="lastname" class="col-sm-2 control-label">地址</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="lastname" placeholder="发布会地址">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="lastname" class="col-sm-2 control-label">人数</label>
+              <div class="col-sm-10">
+                <input type="number" class="form-control" id="lastname" placeholder="发布会人数">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="lastname" class="col-sm-2 control-label">日期</label>
+              <div class="col-sm-10">
+                <input type="date" class="form-control" id="lastname" placeholder="发布会日期">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="lastname" class="col-sm-2 control-label">状态</label>
+              <label class="radio-inline">
+                  <input type="radio" name="optionsRadiosinline" id="optionsRadios3" value="option1" checked>开启
+              </label>
+              <label class="radio-inline">
+                  <input type="radio" name="optionsRadiosinline" id="optionsRadios4"  value="option2"> 关闭
+              </label>
+            </div>
+
+            <div class="form-group">
+              <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-default">提交</button>
+              </div>
+            </div>
+
+          </form>
+
+      </div>
+    </div>
+
+
+{% endblock %}

@@ -22,9 +22,9 @@
 
     <div class="container theme-showcase" role="main">
 
-      <!--发布会表单-->
+      <!--查询发布会-->
       <div class="page-header" style="margin-top: 80px;">
-        <div id="navbar" class="navbar-collapse collapse">
+        <div id="navbar" class="navbar-collapse collapse" style="float:left;">
           <form class="navbar-form" method="get" action="/search_name/">
             <div class="form-group">
               <input name="name" type="text" placeholder="名称" class="form-control">
@@ -32,8 +32,12 @@
             <button type="submit" class="btn btn-success">搜索</button>
           </form>
         </div><!--/.navbar-collapse -->
+        <div "float:right;">
+          <button type="submit" class="btn btn-primary" style="margin-top: 8px;">添加</button>
+        </div>
       </div>
 
+      <!--发布会表单-->
       <div class="row" >
         <div class="col-md-6" style="width: 800px;">
           <table class="table table-striped">
@@ -55,7 +59,7 @@
                   <td>{{ event.name }}</td>
                   <td>{{ event.status }}</td>
                   <td>{{ event.address }}</td>
-                  <td>{{ event.start_time }}</td>
+                  <td>{{ event.start_time | date:"Y-m-d H:i:s" }}</td>
                   <td><a href="/sign_index/{{ event.id }}/"  target="{{ event.id }}_blank">sign</a></td>
                 <!--  <td><a href="/sign_index2/{{ event.id }}/"  target="{{ event.id }}_blank">sign_web</a></td>
                 -->
