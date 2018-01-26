@@ -25,6 +25,7 @@ class Guest(models.Model):
 
     class Meta:
         unique_together = ('phone', 'event')
+        ordering = ['-id']
 
     def __str__(self):
         return self.realname
