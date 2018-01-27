@@ -33,21 +33,22 @@
           </form>
         </div><!--/.navbar-collapse -->
         <div "float:right;">
-          <button type="submit" class="btn btn-primary" style="margin-top: 8px;">添加</button>
+          <button type="submit" class="btn btn-primary" onclick="window.location.href='/add_event/'" style="margin-top: 8px;">添加</button>
         </div>
       </div>
 
       <!--发布会表单-->
       <div class="row" >
-        <div class="col-md-6" style="width: 800px;">
+        <div class="col-md-6" style="width: 900px;">
           <table class="table table-striped">
             <thead>
               <tr>
                 <th>id</th>
                 <th>名称</th>
-                <th>状态</th>
                 <th>地址</th>
                 <th>时间</th>
+                <th>人数</th>
+                <th>状态</th>
                 <th>签到</th>
               <!--  <th>签到正式</th> -->
               </tr>
@@ -57,9 +58,10 @@
                 <tr>
                   <td>{{ event.id }}</td>
                   <td>{{ event.name }}</td>
-                  <td>{{ event.status }}</td>
                   <td>{{ event.address }}</td>
                   <td>{{ event.start_time | date:"Y-m-d H:i:s" }}</td>
+                  <td>{{ event.limit }}</td>
+                  <td>{{ event.status }}</td>
                   <td><a href="/sign_index/{{ event.id }}/"  target="{{ event.id }}_blank">sign</a></td>
                 <!--  <td><a href="/sign_index2/{{ event.id }}/"  target="{{ event.id }}_blank">sign_web</a></td>
                 -->

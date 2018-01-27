@@ -26,7 +26,7 @@
         <!--发布会表单-->
         <div class="page-header" style="margin-top: 80px;">
           <!-- 搜索功能-->
-          <div id="navbar" class="navbar-collapse collapse">
+          <div id="navbar" class="navbar-collapse collapse" style="float:left;">
             <form class="navbar-form" method="get" action="/search_phone/">
               <div class="form-group">
                 <input name="phone" type="text" placeholder="手机号" class="form-control">
@@ -34,6 +34,9 @@
               <button type="submit" class="btn btn-success">搜索</button>
             </form>
           </div><!--/.navbar-collapse -->
+          <div "float:right;">
+            <button type="submit" class="btn btn-primary" onclick="window.location.href='/add_guest/'" style="margin-top: 8px;">添加</button>
+          </div>
         </div>
 
         <!--列表显示 -->
