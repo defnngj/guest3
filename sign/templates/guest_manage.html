@@ -73,19 +73,22 @@
         <!-- 列表分页器 -->
       <div class="pagination">
         <span class="step-links">
-          {% if guests.has_previous %}
-            <a href="?phone={{ phone }}&page={{ guests.previous_page_number }}">previous</a>
-          {% endif %}
-            <span class="current">
-              Page {{ guests.number }} of {{ guests.paginator.num_pages }}.
-            </span>
-          {% if guests.has_next %}
-            {% if phone %}
-              <a href="?phone={{ phone }}&page={{ guests.next_page_number }}">next</a>
-            {% else %}
-             <a href="?page={{ guests.next_page_number }}">next</a>
+          <ul class="pagination">
+            {% if guests.has_previous %}
+              <li><a href="?phone={{ phone }}&page={{ guests.previous_page_number }}">&laquo;</a></li>
             {% endif %}
-          {% endif %}
+
+             <li><a href="#">{{ guests.number }}</a></li>
+
+            {% if guests.has_next %}
+              {% if phone %}
+                <li><a href="?phone={{ phone }}&page={{ guests.next_page_number }}">&raquo;</a></li>
+              {% else %}
+               <li><a href="?page={{ guests.next_page_number }}">&raquo;</a></li>
+              {% endif %}
+            {% endif %}
+            <li><a href="#">共：{{ guests.paginator.num_pages }} 页</a></li>
+          </ul>
         </span>
       </div>
 
