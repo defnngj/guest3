@@ -183,6 +183,9 @@ def aes_encryption(request):
     else:
         return "error"
 
+    if data == "":
+        return "data null"
+
     # 解密
     decode = decryptAES(data, app_key)
     # 转化为字典
@@ -193,12 +196,20 @@ def aes_encryption(request):
 def get_guest_list(request):
 
     dict_data = aes_encryption(request)
+
+    if dict_data == "data null":
+        return JsonResponse({'status':10010,'message':'data null'})
+
     if dict_data == "error":
         return JsonResponse({'status':10011,'message':'request error'})
 
-    # 取出对应的发布会id和嘉宾手机号
-    eid = dict_data['eid']
-    phone = dict_data['phone']
+    # 取出对应的发布会id和手机号
+    try:
+        eid = dict_data['eid']
+        phone = dict_data['phone']
+    except KeyError:
+        return JsonResponse({'status':10012,'message':'parameter error'})
+
 
     if eid == '':
         return JsonResponse({'status':10021,'message':'eid cannot be empty'})
