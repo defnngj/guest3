@@ -157,10 +157,12 @@ def search_phone(request):
 def sign_index(request, event_id):
     print(event_id)
     event = get_object_or_404(Event, id=event_id)
-    guest_list = Guest.objects.filter(event_id=event_id)           # 签到人数
-    sign_list = Guest.objects.filter(sign="1", event_id=event_id)   # 已签到数
-    guest_data = str(len(guest_list))
-    sign_data = str(len(sign_list))
+    guest_list = Guest.objects.filter(event_id=event_id)
+    guest_data = str(len(guest_list))  # 签到人数
+    sign_data = 0                      # 已签到人数
+    for guest in guest_list:
+        if guest.sign == True:
+            sign_data += 1
     return render(request, 'sign_index.html', {'event': event,
                                                'guest':guest_data,
                                                'sign':sign_data})
@@ -178,9 +180,11 @@ def sign_index2(request,event_id):
 def sign_index_action(request, event_id):
     event = get_object_or_404(Event, id=event_id)
     guest_list = Guest.objects.filter(event_id=event_id)
-    sign_list = Guest.objects.filter(sign="1", event_id=event_id)
     guest_data = str(len(guest_list))
-    sign_data = str(len(sign_list))
+    sign_data = 0
+    for guest in guest_list:
+        if guest.sign == True:
+            sign_data += 1
 
     phone =  request.POST.get('phone','')
 
