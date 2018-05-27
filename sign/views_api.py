@@ -167,15 +167,15 @@ def user_sign(request):
     if eid =='' or phone == '':
         return JsonResponse({'status':10021,'message':'parameter error'})
 
-    result = Event.objects.filter(id=eid)
-    if not result:
-        return JsonResponse({'status':10022,'message':'event id null'})
+    try:
+        result = Event.objects.get(id=eid)
+    except Event.DoesNotExist:
+        return JsonResponse({'status': 10022, 'message': 'event id null'})
 
-    result = Event.objects.get(id=eid).status
-    if not result:
-        return JsonResponse({'status':10023,'message':'event status is not available'})
+    if result.status is False:
+        return JsonResponse({'status': 10023, 'message': 'event status is not available'})
 
-    event_time = Event.objects.get(id=eid).start_time     # 发布会时间
+    event_time = result.start_time     # 发布会时间
     timeArray = time.strptime(str(event_time), "%Y-%m-%d %H:%M:%S")
     e_time = int(time.mktime(timeArray))
 
@@ -189,14 +189,18 @@ def user_sign(request):
     result = Guest.objects.filter(phone=phone)
     if not result:
         return JsonResponse({'status':10025,'message':'user phone null'})
-
-    result = Guest.objects.filter(phone=phone,event_id=eid)
-    if not result:
-        return JsonResponse({'status':10026,'message':'user did not participate in the conference'})
-
-    result = Guest.objects.get(event_id=eid,phone=phone).sign
-    if result:
+    else:
+        for res in result:
+            if res.event_id == int(eid):
+                break
+        else:
+            return JsonResponse({'status': 10026, 'message': 'user did not participate in the conference'})
+    
+    result = Guest.objects.get(event_id=eid, phone=phone)
+    print(result.sign)
+    if result.sign is True:
         return JsonResponse({'status':10027,'message':'user has sign in'})
     else:
-        Guest.objects.filter(phone=phone).update(sign='1')
+        result.sign = True
+        result.save()
         return JsonResponse({'status':200,'message':'sign success'})
