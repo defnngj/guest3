@@ -8,7 +8,8 @@
   * python 3.6 + : https://www.python.org/
   * Django 2.0 : https://www.djangoproject.com/
   * PyMySQL 0.8.0: https://github.com/PyMySQL/PyMySQL
-  * django-bootstrap3 9.1.0：https://github.com/dyve/django-bootstrap3
+  * django-bootstrap 3 9.1.0：https://github.com/dyve/django-bootstrap3
+  * pycryptodome 3.6.3：https://github.com/Legrandin/pycryptodome 
 
 
 #### 提供接口

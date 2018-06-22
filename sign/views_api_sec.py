@@ -5,7 +5,7 @@ from django.contrib import auth as django_auth
 import base64, time
 import hashlib
 from django.http import HttpResponse
-#from Crypto.Cipher import AES    # 请安装 Crypto
+from Crypto.Cipher import AES    # 请安装 Crypto
 import json
 
 
@@ -157,12 +157,14 @@ def add_event(request):
 
 
 #=======AES加密算法===============
-'''
+
 BS = 16
 unpad = lambda s : s[0: - ord(s[-1])]
 
+
 def decryptBase64(src):
     return base64.urlsafe_b64decode(src)
+
 
 def decryptAES(src, key):
     """
@@ -176,7 +178,8 @@ def decryptAES(src, key):
 
 def aes_encryption(request):
 
-    app_key = 'W7v4D60fds2Cmk2U'
+    key = 'W7v4D60fds2Cmk2U'
+    app_key = key.encode('utf-8')
 
     if request.method == 'POST':
         data = request.POST.get("data", "")
@@ -192,9 +195,9 @@ def aes_encryption(request):
     dict_data = json.loads(decode)
     return dict_data
 
+
 # 嘉宾查询接口----AES算法
 def get_guest_list(request):
-
     dict_data = aes_encryption(request)
 
     if dict_data == "data null":
@@ -209,7 +212,6 @@ def get_guest_list(request):
         phone = dict_data['phone']
     except KeyError:
         return JsonResponse({'status':10012,'message':'parameter error'})
-
 
     if eid == '':
         return JsonResponse({'status':10021,'message':'eid cannot be empty'})
@@ -241,4 +243,3 @@ def get_guest_list(request):
             guest['email'] = result.email
             guest['sign'] = result.sign
             return JsonResponse({'status':200, 'message':'success', 'data':guest})
-'''
