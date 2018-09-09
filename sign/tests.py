@@ -5,7 +5,19 @@ from sign.models import Event, Guest
 
 
 # Create your tests here.
-class ModelTest(TestCase):
+class UserModelsTest(TestCase):
+    '''模型测试'''
+
+    def setUp(self):
+        User.objects.create_user("test01", "test01@mail.com", "test1232456")
+
+    def test_user(self):
+        user = User.objects.get(username="test01")
+        self.assertEqual(user.username, "test01")
+        self.assertEqual(user.email, "test01@mail.com")
+
+
+class SignModelTest(TestCase):
     '''模型测试'''
 
     def setUp(self):

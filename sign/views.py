@@ -84,7 +84,7 @@ def add_event(request):
 @login_required
 def guest_manage(request):
     username = request.session.get('user', '')
-    guests = Guest.objects.all()
+    guests = Guest.objects.get_queryset().order_by('id')
 
     paginator = Paginator(guests, 5)
     page = request.GET.get('page')
