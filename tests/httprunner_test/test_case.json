@@ -1,0 +1,49 @@
+[
+    {
+        "test": {
+            "name": " test_add_event_all_null",
+            "request": {
+                "url": "http://127.0.0.1:8000/api/add_event/",
+                "method": "POST",
+                "data":{"eid":"","limit":"","address":"","start_time":""}
+            },
+            "validate": [
+                {"eq": ["status_code",200]},
+                {"eq": ["content.status", 10021]},
+                {"eq": ["content.message", "parameter error"]}
+            ]
+        }
+    },
+    {
+        "test": {
+            "name": " test_add_event_eid_exist",
+            "request": {
+                "url": "http://127.0.0.1:8000/api/add_event/",
+                "method": "POST",
+                "data":{"eid":1,"name":"一加6T发布会","limit":2000,"address":"深圳宝体","start_time":"2017"}
+            },
+            "validate": [
+                {"eq": ["status_code",200]},
+                {"eq": ["content.status", 10022]},
+                {"eq": ["content.message", "event id already exists"]}
+            ]
+        }
+    },
+    {
+        "test": {
+            "name": " test_add_event_success",
+            "request": {
+                "url": "http://127.0.0.1:8000/api/add_event/",
+                "method": "POST",
+                "data":{"eid":21,"name":"一加4手机发布会","limit":2000,
+                		"address":"深圳宝体","start_time":"2017-05-10 12:00:00"
+                	}
+            },
+            "validate": [
+                {"eq": ["status_code",200]},
+                {"eq": ["content.status", 200]},
+                {"eq": ["content.message", "add event success"]}
+            ]
+        }
+    }
+]
