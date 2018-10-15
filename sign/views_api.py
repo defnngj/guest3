@@ -65,9 +65,7 @@ def add_guest(request):
     timeArray = time.strptime(str(event_time), "%Y-%m-%d %H:%M:%S")
     e_time = int(time.mktime(timeArray))
 
-    now_time = str(time.time())          # 当前时间
-    ntime = now_time.split(".")[0]
-    n_time = int(ntime)
+    n_time = int(time.time())       # 当前时间
 
     if n_time >= e_time:
         return JsonResponse({'status':10025,'message':'event has started'})
@@ -179,9 +177,7 @@ def user_sign(request):
     timeArray = time.strptime(str(event_time), "%Y-%m-%d %H:%M:%S")
     e_time = int(time.mktime(timeArray))
 
-    now_time = str(time.time())          # 当前时间
-    ntime = now_time.split(".")[0]
-    n_time = int(ntime)
+    n_time = int(time.time())   # 当前时间
 
     if n_time >= e_time:
         return JsonResponse({'status':10024,'message':'event has started'})
