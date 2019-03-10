@@ -166,21 +166,19 @@ def decryptBase64(src):
     return base64.urlsafe_b64decode(src)
 
 
-def decryptAES(src, key):
+def decryptAES(src):
     """
     解析AES密文
     """
     src = decryptBase64(src)
+    key = b'W7v4D60fds2Cmk2U'
     iv = b"1172311105789011"
     cryptor = AES.new(key, AES.MODE_CBC, iv)
     text = cryptor.decrypt(src).decode()
     return unpad(text)
 
+
 def aes_encryption(request):
-
-    key = 'W7v4D60fds2Cmk2U'
-    app_key = key.encode('utf-8')
-
     if request.method == 'POST':
         data = request.POST.get("data", "")
     else:
@@ -190,7 +188,7 @@ def aes_encryption(request):
         return "data null"
 
     # 解密
-    decode = decryptAES(data, app_key)
+    decode = decryptAES(data)
     # 转化为字典
     dict_data = json.loads(decode)
     return dict_data
