@@ -1,6 +1,8 @@
 from django import forms
 from django.forms import ModelForm
-from sign.models import Event, Guest
+from sign.models.event import Event
+from sign.models.guest import Guest
+
 
 # 添加发布会表单
 class AddEventForm(forms.Form):

@@ -1,7 +1,8 @@
 from django.contrib import admin
-from sign.models import Event, Guest
+from sign.models.event import Event
+from sign.models.guest import Guest
 
-# Register your models here.
+
 # Register your models here.
 class EventAdmin(admin.ModelAdmin):
     list_display = ['name', 'status', 'start_time','id']

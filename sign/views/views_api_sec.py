@@ -1,5 +1,6 @@
 from django.http import JsonResponse
-from sign.models import Event, Guest
+from sign.models.event import Event
+from sign.models.guest import Guest
 from django.core.exceptions import ObjectDoesNotExist, ValidationError
 from django.contrib import auth as django_auth
 import base64, time
