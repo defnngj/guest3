@@ -37,6 +37,8 @@ urlpatterns = [
     path('logout/', views.logout),
     path('api/', include('sign.urls')),
 
+    path('v1/', include('api.urls')),
+
 ]
 
 
