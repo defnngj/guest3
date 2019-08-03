@@ -11,4 +11,19 @@ urlpatterns = [
     path('login', views.post_login),
     path('add_user', views.post_add_user),
     path('header', views.post_header),
+    path('phone/<int:pid>/', views.phone),
+
+    # session 记录用户状态
+    path('user_login', views.user_login),
+    path('user_login_data', views.user_login_data),
+
+
+    # 接口的依赖
+    path('get_activity', views.get_activity),
+    path('get_user', views.get_user),
+    path('get_lucky_number', views.get_lucky_number),
+
+    # 文件上传
+    path('upload_file', views.upload_file)
+
 ]
