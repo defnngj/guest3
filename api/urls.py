@@ -11,7 +11,9 @@ urlpatterns = [
     path('login', views.post_login),
     path('add_user', views.post_add_user),
     path('header', views.post_header),
-    path('phone/<int:pid>/', views.phone),
+
+    # RESTful 风格接口
+    path('user/<int:uid>/', views.user),
 
     # session 记录用户状态
     path('user_login', views.user_login),
