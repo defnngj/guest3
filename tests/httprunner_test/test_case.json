@@ -3,6 +3,9 @@
         "config": {
             "name": "basic test config",
             "base_url": "http://127.0.0.1:8000/api",
+            "output": [
+                "result"
+            ],
             "validate": [
                 {"eq": ["status_code", 200]}
             ]
@@ -17,6 +20,9 @@
                 "method": "POST",
                 "data":{"eid":"","limit":"","address":"","start_time":""}
             },
+             "extract": {
+                "result": "content"
+            },
             "validate": [
                 {"eq": ["content.status", 10021]},
                 {"eq": ["content.message", "parameter error"]}
@@ -30,6 +36,9 @@
                 "url": "/add_event/",
                 "method": "POST",
                 "data":{"eid":1,"name":"一加6T发布会","limit":2000,"address":"深圳宝体","start_time":"2017"}
+            },
+             "extract": {
+                "result": "content"
             },
             "validate": [
                 {"eq": ["content.status", 10022]},
@@ -46,6 +55,9 @@
                 "data":{"eid":21,"name":"一加4手机发布会","limit":2000,
                 		"address":"深圳宝体","start_time":"2017-05-10 12:00:00"
                 	}
+            },
+             "extract": {
+                "result": "content"
             },
             "validate": [
                 {"eq": ["content.status", 200]},
