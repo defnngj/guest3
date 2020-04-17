@@ -1,24 +1,22 @@
 from django.http import JsonResponse
 
 
-def ApiResponse(status=None, message=None, data=[]):
+def response(status=None, message=None, data=[]):
     """
     实现Api的固定格式的返回
-    :param status:
-    :param message:
-    :param data:
+    :param status: 状态码
+    :param message: 提示信息
+    :param data: 数据
     :return:
     """
     if status is None:
-        status__ = 10000
-    else:
-        status__ = 10000 + int(status)
+        status = 10200
 
     if message is None:
         message = "successful"
 
     response_dict = {
-        "status": status__,
+        "status": status,
         "message": message,
         "data": data
     }
