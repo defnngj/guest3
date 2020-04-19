@@ -4,7 +4,7 @@ from random import randint
 from django.forms.models import model_to_dict
 from django.contrib import auth
 from django.contrib.auth.decorators import login_required
-from guest2.settings import BASE_DIR
+from guest3.settings import BASE_DIR
 from api.models import User
 from api.common import response
 

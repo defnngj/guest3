@@ -1,8 +1,7 @@
 <html>
 
   <head>
-    {% load bootstrap3 %}
-    {% bootstrap_css %}
+    <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
   </head>
 
   <body>
@@ -10,9 +9,9 @@
       <form class="form-signin" method="post" action="/login_action/">
           <h2 class="form-signin-heading">Guest System</h2>
             <label for="inputUsername" class="sr-only">Username</label>
-              <input name="username" type="text" id="inputUsername" class="form-control" placeholder="Username" required autofocus>
+              <input name="username" type="text" id="inputUsername" class="form-control" placeholder="Username" autofocus>
             <label for="inputPassword" class="sr-only">Password</label>
-              <input name="password" type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+              <input name="password" type="password" id="inputPassword" class="form-control" placeholder="Password">
               <p style="color:red">{{error}}</p> <br>
             <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
       </form>

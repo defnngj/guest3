@@ -30,7 +30,8 @@ def add_event(request):
         status = 1
 
     try:
-        Event.objects.create(id=eid, name=name, limit=limit, address=address, status=int(status), start_time=start_time)
+        Event.objects.create(id=eid, name=name, limit=limit, address=address, status=int(
+            status), start_time=start_time)
     except ValidationError:
         error = 'start_time format error. It must be in YYYY-MM-DD HH:MM:SS format.'
         return JsonResponse({'status': 10024, 'message': error})
@@ -72,7 +73,8 @@ def add_guest(request):
         return JsonResponse({'status': 10025, 'message': 'event has started'})
 
     try:
-        Guest.objects.create(realname=realname, phone=int(phone), email=email, sign=0, event_id=int(eid))
+        Guest.objects.create(realname=realname, phone=int(
+            phone), email=email, sign=0, event_id=int(eid))
     except IntegrityError:
         return JsonResponse({'status': 10026, 'message': 'the event guest phone number repeat'})
 
