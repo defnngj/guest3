@@ -207,7 +207,7 @@ def user_login_data(request):
     """
     通过Session读取用户数据
     """
-    username = request.session.get('user', '') # 读取浏览器 session
+    username = request.session.get('user', '')   # 读取浏览器 session
     if username == "":
         return response(10200, 'hello, stranger')
     else:

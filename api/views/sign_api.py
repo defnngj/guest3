@@ -36,7 +36,7 @@ def add_event(request):
         error = 'start_time format error. It must be in YYYY-MM-DD HH:MM:SS format.'
         return JsonResponse({'status': 10024, 'message': error})
 
-    return JsonResponse({'status': 200, 'message': 'add event success'})
+    return JsonResponse({'status': 10200, 'message': 'add event success'})
 
 
 # 添加嘉宾接口
@@ -78,7 +78,7 @@ def add_guest(request):
     except IntegrityError:
         return JsonResponse({'status': 10026, 'message': 'the event guest phone number repeat'})
 
-    return JsonResponse({'status': 200, 'message': 'add guest success'})
+    return JsonResponse({'status': 10200, 'message': 'add guest success'})
 
 
 # 发布会查询
@@ -102,7 +102,7 @@ def get_event_list(request):
             event['status'] = result.status
             event['address'] = result.address
             event['start_time'] = result.start_time
-            return JsonResponse({'status': 200, 'message': 'success', 'data': event})
+            return JsonResponse({'status': 10200, 'message': 'success', 'data': event})
 
     if name != '':
         datas = []
@@ -118,7 +118,7 @@ def get_event_list(request):
                     'start_time': r.start_time,
                 }
                 datas.append(event_dict)
-            return JsonResponse({'status': 200, 'message': 'success', 'data': datas})
+            return JsonResponse({'status': 10200, 'message': 'success', 'data': datas})
         else:
             return JsonResponse({'status': 10022, 'message': 'query result is empty'})
 
@@ -203,4 +203,4 @@ def user_sign(request):
     else:
         result.sign = True
         result.save()
-        return JsonResponse({'status': 200, 'message': 'sign success'})
+        return JsonResponse({'status': 10200, 'message': 'sign success'})

@@ -21,7 +21,11 @@ import json
 
 
 def user_auth(request):
+    """
+    用户认证
+    """
     get_http_auth = request.META.get('HTTP_AUTHORIZATION', b'')
+
     auth = get_http_auth.split()
     try:
         auth_parts = base64.b64decode(auth[1]).decode('utf-8').partition(':')
@@ -88,19 +92,29 @@ def get_event_list(request):
 
 # 用户签名+时间戳
 def user_sign(request):
-
+    """
+    用户签名
+    """
     if request.method == 'POST':
         client_time = request.POST.get('time', '')   # 客户端时间戳
         client_sign = request.POST.get('sign', '')   # 客户端签名
+        print("客户端时间", client_time)
+        print("客户端签名", client_sign)
     else:
         return "error"
 
     if client_time == '' or client_sign == '':
         return "sign null"
 
+    try:
+        int(client_time)
+    except ValueError:
+        return "value error"
+
     # 服务器时间
-    now_time = time.time()    # 例：1466426831
-    server_time = str(now_time).split('.')[0]
+    server_time = str(time.time()).split('.')[0]
+    print("服务端时间", server_time)
+
     # 获取时间差
     time_difference = int(server_time) - int(client_time)
     if time_difference >= 60:
@@ -112,6 +126,7 @@ def user_sign(request):
     sign_bytes_utf8 = sign_str.encode(encoding="utf-8")
     md5.update(sign_bytes_utf8)
     sever_sign = md5.hexdigest()
+    print("服务端签名", sever_sign)
     if sever_sign != client_sign:
         return "sign fail"
     else:
@@ -129,6 +144,8 @@ def add_event(request):
         return JsonResponse({'status': 10013, 'message': 'user sign timeout'})
     elif sign_result == "sign fail":
         return JsonResponse({'status': 10014, 'message': 'user sign error'})
+    elif sign_result == "value error":
+        return JsonResponse({'status': 10015, 'message': 'user sign type error'})
 
     eid = request.POST.get('eid', '')                 # 发布会id
     name = request.POST.get('name', '')               # 发布会标题
