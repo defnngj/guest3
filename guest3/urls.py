@@ -15,11 +15,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,  include
-from sign.views import views
-
+from sign import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+
+    # sign 应用
     path('index/', views.index),
     path('', views.index),
     path('accounts/login/', views.index),
@@ -34,8 +35,7 @@ urlpatterns = [
     #path('sign_index2/<int:event_id>/', views.sign_index2),
     path('sign_index_action/<int:event_id>/', views.sign_index_action),
     path('logout/', views.logout),
-    path('api/', include('sign.urls')),
 
-    path('v1/', include('api.urls')),
-
+    # api 应用
+    path('api/', include('api.urls')),
 ]
