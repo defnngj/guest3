@@ -6,18 +6,13 @@ from django.contrib import auth as django_auth
 import base64
 import time
 import hashlib
-from django.http import HttpResponse
 from Crypto.Cipher import AES    # 请安装 Crypto
 import json
 
 
 """
-为接口参加安全机制：认证、签名、AES加密
+用户认证
 """
-
-#=======用户认证===============
-
-# 用户认证
 
 
 def user_auth(request):
@@ -40,8 +35,10 @@ def user_auth(request):
         return "fail"
 
 
-# 发布会查询接口---增加用户认证
 def get_event_list(request):
+    """
+    发布会查询接口---增加用户认证
+    """
     auth_result = user_auth(request)
     if auth_result == "null":
         return JsonResponse({'status': 10011, 'message': 'user auth null'})
@@ -56,18 +53,19 @@ def get_event_list(request):
         return JsonResponse({'status': 10021, 'message': 'parameter error'})
 
     if eid != '':
-        event = {}
         try:
             result = Event.objects.get(id=eid)
         except ObjectDoesNotExist:
             return JsonResponse({'status': 10022, 'message': 'query result is empty'})
         else:
-            event['eid'] = result.id
-            event['name'] = result.name
-            event['limit'] = result.limit
-            event['status'] = result.status
-            event['address'] = result.address
-            event['start_time'] = result.start_time
+            event = {
+                'eid': result.id,
+                'name': result.name,
+                'limit': result.limit,
+                'status': result.status,
+                'address': result.address,
+                'start_time': result.start_time
+            }
             return JsonResponse({'status': 200, 'message': 'success', 'data': event})
 
     if name != '':
@@ -75,31 +73,32 @@ def get_event_list(request):
         results = Event.objects.filter(name__contains=name)
         if results:
             for r in results:
-                event = {}
-                event['eid'] = r.id
-                event['name'] = r.name
-                event['limit'] = r.limit
-                event['status'] = r.status
-                event['address'] = r.address
-                event['start_time'] = r.start_time
+                event = {
+                    'eid': r.id,
+                    'name': r.name,
+                    'limit': r.limit,
+                    'status': r.status,
+                    'address': r.address,
+                    'start_time': r.start_time
+                }
                 datas.append(event)
             return JsonResponse({'status': 200, 'message': 'success', 'data': datas})
         else:
             return JsonResponse({'status': 10022, 'message': 'query result is empty'})
 
 
-#=======用户签名+时间戳===============
+"""
+用户签名+时间戳
+"""
 
-# 用户签名+时间戳
+
 def user_sign(request):
     """
-    用户签名
+    用户签名+时间戳
     """
     if request.method == 'POST':
         client_time = request.POST.get('time', '')   # 客户端时间戳
         client_sign = request.POST.get('sign', '')   # 客户端签名
-        print("客户端时间", client_time)
-        print("客户端签名", client_sign)
     else:
         return "error"
 
@@ -113,7 +112,6 @@ def user_sign(request):
 
     # 服务器时间
     server_time = str(time.time()).split('.')[0]
-    print("服务端时间", server_time)
 
     # 获取时间差
     time_difference = int(server_time) - int(client_time)
@@ -126,15 +124,16 @@ def user_sign(request):
     sign_bytes_utf8 = sign_str.encode(encoding="utf-8")
     md5.update(sign_bytes_utf8)
     sever_sign = md5.hexdigest()
-    print("服务端签名", sever_sign)
     if sever_sign != client_sign:
         return "sign fail"
     else:
         return "sign right"
 
 
-# 添加发布会接口---增加签名+时间戳
 def add_event(request):
+    """
+    添加发布会接口---增加签名+时间戳
+    """
     sign_result = user_sign(request)
     if sign_result == "error":
         return JsonResponse({'status': 10011, 'message': 'request error'})
@@ -178,7 +177,9 @@ def add_event(request):
     return JsonResponse({'status': 200, 'message': 'add event success'})
 
 
-#=======AES加密算法===============
+"""
+AES加密算法
+"""
 
 BS = 16
 
@@ -218,8 +219,10 @@ def aes_encryption(request):
     return dict_data
 
 
-# 嘉宾查询接口----AES算法
 def get_guest_list(request):
+    """
+    嘉宾查询接口----AES算法
+    """
     dict_data = aes_encryption(request)
 
     if dict_data == "data null":
@@ -243,25 +246,29 @@ def get_guest_list(request):
         results = Guest.objects.filter(event_id=eid)
         if results:
             for r in results:
-                guest = {}
-                guest['realname'] = r.realname
-                guest['phone'] = r.phone
-                guest['email'] = r.email
-                guest['sign'] = r.sign
+                guest = {
+                    'realname': r.realname,
+                    'phone': r.phone,
+                    'email': r.email,
+                    'sign': r.sign
+                }
                 datas.append(guest)
             return JsonResponse({'status': 200, 'message': 'success', 'data': datas})
         else:
             return JsonResponse({'status': 10022, 'message': 'query result is empty'})
 
     if eid != '' and phone != '':
-        guest = {}
+
         try:
             result = Guest.objects.get(phone=phone, event_id=eid)
         except ObjectDoesNotExist:
             return JsonResponse({'status': 10022, 'message': 'query result is empty'})
         else:
-            guest['realname'] = result.realname
-            guest['phone'] = result.phone
-            guest['email'] = result.email
-            guest['sign'] = result.sign
+            guest = {
+                'realname': result.realname,
+                'phone': result.phone,
+                'email': result.email,
+                'sign': result.sign
+            }
+
             return JsonResponse({'status': 200, 'message': 'success', 'data': guest})
