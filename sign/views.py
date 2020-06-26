@@ -13,9 +13,8 @@ from sign.forms import AddEventForm, AddGuestForm
 def index(request):
     return render(request, "index.html")
 
+
 # 登录处理
-
-
 def login_action(request):
     if request.method == "POST":
         login_username = request.POST.get("username")
