@@ -3,9 +3,6 @@
     "config": {
         "name": "basic test config",
         "base_url": "http://127.0.0.1:8000/api",
-        "output": [
-            "result"
-        ],
         "validate": [
             {"eq": ["status_code", 200]}
         ]
@@ -19,12 +16,9 @@
                 "method": "POST",
                 "data":{"eid":"","limit":"","address":"","start_time":""}
             },
-            "extract": {
-                "result": "content"
-            },
             "validate": [
-                {"eq": ["content.status", 10021]},
-                {"eq": ["content.message", "parameter error"]}
+                {"eq": ["body.status", 10021]},
+                {"eq": ["body.message", "parameter error"]}
             ]
             
         },
@@ -35,12 +29,9 @@
                 "method": "POST",
                 "data":{"eid":1,"name":"oneplus","limit":2000,"address":"shenzhen","start_time":"2017"}
             },
-            "extract": {
-                "result": "content"
-            },
             "validate": [
-                {"eq": ["content.status", 10022]},
-                {"eq": ["content.message", "event id already exists"]}
+                {"eq": ["body.status", 10022]},
+                {"eq": ["body.message", "event id already exists"]}
             ]
 
         },
@@ -49,16 +40,13 @@
             "request": {
                 "url": "/add_event/",
                 "method": "POST",
-                "data":{"eid":22,"name":"oneplus","limit":2000,
+                "data":{"eid":25,"name":"oneplus9","limit":2000,
                         "address": "shenzhen","start_time":"2017-05-10 12:00:00"
                     }
             },
-            "extract": {
-                "result": "content"
-            },
             "validate": [
-                {"eq": ["content.status", 10200]},
-                {"eq": ["content.message", "add event success"]}
+                {"eq": ["body.status", 10200]},
+                {"eq": ["body.message", "add event success"]}
             ]
         }
     ]   
