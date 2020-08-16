@@ -1,0 +1,158 @@
+2020-08-16 21:48:52.790 | INFO     | httprunner.runner:test_start:451 - Start to run testcase: basic test config, TestCase ID: defd68f4-723a-4d2d-a6e1-f21f8b5d5f3b
+2020-08-16 21:48:52.792 | INFO     | httprunner.runner:__run_step:292 - run step begin:  test_add_event_all_null >>>>>>
+2020-08-16 21:48:52.797 | DEBUG    | httprunner.client:request:186 - client IP: 127.0.0.1, Port: 59062
+2020-08-16 21:48:52.797 | DEBUG    | httprunner.client:request:194 - server IP: 127.0.0.1, Port: 8000
+2020-08-16 21:48:52.798 | DEBUG    | httprunner.client:log_print:40 - 
+================== request details ==================
+method   : POST
+url      : http://127.0.0.1:8000/api/add_event/
+headers  : {
+    "User-Agent": "python-requests/2.22.0",
+    "Accept-Encoding": "gzip, deflate",
+    "Accept": "*/*",
+    "Connection": "keep-alive",
+    "HRUN-Request-ID": "HRUN-defd68f4-723a-4d2d-a6e1-f21f8b5d5f3b-732793",
+    "Content-Length": "32",
+    "Content-Type": "application/x-www-form-urlencoded"
+}
+cookies  : {}
+body     : eid=&limit=&address=&start_time=
+
+2020-08-16 21:48:52.799 | DEBUG    | httprunner.client:log_print:40 - 
+================== response details ==================
+status_code : 200
+headers  : {
+    "Date": "Sun, 16 Aug 2020 13:48:52 GMT",
+    "Server": "WSGIServer/0.2 CPython/3.7.7",
+    "Content-Type": "application/json",
+    "X-Frame-Options": "DENY",
+    "Content-Length": "47",
+    "X-Content-Type-Options": "nosniff"
+}
+cookies  : {}
+encoding : None
+content_type : application/json
+body     : {
+    "status": 10021,
+    "message": "parameter error"
+}
+
+2020-08-16 21:48:52.799 | INFO     | httprunner.client:request:218 - status_code: 200, response_time(ms): 3.99 ms, response_length: 0 bytes
+2020-08-16 21:48:52.800 | INFO     | httprunner.response:extract:176 - extract mapping: {'result': {'status': 10021, 'message': 'parameter error'}}
+2020-08-16 21:48:52.800 | INFO     | httprunner.response:validate:246 - assert body.status equal 10021(int)	==> pass
+2020-08-16 21:48:52.801 | INFO     | httprunner.response:validate:246 - assert body.message equal parameter error(str)	==> pass
+2020-08-16 21:48:52.801 | INFO     | httprunner.runner:__run_step:304 - run step end:  test_add_event_all_null <<<<<<
+
+2020-08-16 21:48:52.802 | INFO     | httprunner.runner:__run_step:292 - run step begin:  test_add_event_eid_exist >>>>>>
+2020-08-16 21:48:52.807 | DEBUG    | httprunner.client:request:186 - client IP: 127.0.0.1, Port: 59062
+2020-08-16 21:48:52.808 | DEBUG    | httprunner.client:request:194 - server IP: 127.0.0.1, Port: 8000
+2020-08-16 21:48:52.809 | DEBUG    | httprunner.client:log_print:40 - 
+================== request details ==================
+method   : POST
+url      : http://127.0.0.1:8000/api/add_event/
+headers  : {
+    "User-Agent": "python-requests/2.22.0",
+    "Accept-Encoding": "gzip, deflate",
+    "Accept": "*/*",
+    "Connection": "keep-alive",
+    "HRUN-Request-ID": "HRUN-defd68f4-723a-4d2d-a6e1-f21f8b5d5f3b-732802",
+    "Content-Length": "62",
+    "Content-Type": "application/x-www-form-urlencoded"
+}
+cookies  : {}
+body     : eid=1&name=oneplus&limit=2000&address=shenzhen&start_time=2017
+
+2020-08-16 21:48:52.810 | DEBUG    | httprunner.client:log_print:40 - 
+================== response details ==================
+status_code : 200
+headers  : {
+    "Date": "Sun, 16 Aug 2020 13:48:52 GMT",
+    "Server": "WSGIServer/0.2 CPython/3.7.7",
+    "Content-Type": "application/json",
+    "X-Frame-Options": "DENY",
+    "Content-Length": "55",
+    "X-Content-Type-Options": "nosniff"
+}
+cookies  : {}
+encoding : None
+content_type : application/json
+body     : {
+    "status": 10022,
+    "message": "event id already exists"
+}
+
+2020-08-16 21:48:52.810 | INFO     | httprunner.client:request:218 - status_code: 200, response_time(ms): 4.99 ms, response_length: 0 bytes
+2020-08-16 21:48:52.811 | INFO     | httprunner.response:extract:176 - extract mapping: {'result': {'status': 10022, 'message': 'event id already exists'}}
+2020-08-16 21:48:52.811 | INFO     | httprunner.response:validate:246 - assert body.status equal 10022(int)	==> pass
+2020-08-16 21:48:52.811 | INFO     | httprunner.response:validate:246 - assert body.message equal event id already exists(str)	==> pass
+2020-08-16 21:48:52.812 | INFO     | httprunner.runner:__run_step:304 - run step end:  test_add_event_eid_exist <<<<<<
+
+2020-08-16 21:48:52.812 | INFO     | httprunner.runner:__run_step:292 - run step begin:  test_add_event_success >>>>>>
+2020-08-16 21:48:52.817 | DEBUG    | httprunner.client:request:186 - client IP: 127.0.0.1, Port: 59062
+2020-08-16 21:48:52.817 | DEBUG    | httprunner.client:request:194 - server IP: 127.0.0.1, Port: 8000
+2020-08-16 21:48:52.818 | DEBUG    | httprunner.client:log_print:40 - 
+================== request details ==================
+method   : POST
+url      : http://127.0.0.1:8000/api/add_event/
+headers  : {
+    "User-Agent": "python-requests/2.22.0",
+    "Accept-Encoding": "gzip, deflate",
+    "Accept": "*/*",
+    "Connection": "keep-alive",
+    "HRUN-Request-ID": "HRUN-defd68f4-723a-4d2d-a6e1-f21f8b5d5f3b-732813",
+    "Content-Length": "82",
+    "Content-Type": "application/x-www-form-urlencoded"
+}
+cookies  : {}
+body     : eid=21&name=oneplus&limit=2000&address=shenzhen&start_time=2017-05-10+12%3A00%3A00
+
+2020-08-16 21:48:52.819 | DEBUG    | httprunner.client:log_print:40 - 
+================== response details ==================
+status_code : 200
+headers  : {
+    "Date": "Sun, 16 Aug 2020 13:48:52 GMT",
+    "Server": "WSGIServer/0.2 CPython/3.7.7",
+    "Content-Type": "application/json",
+    "X-Frame-Options": "DENY",
+    "Content-Length": "55",
+    "X-Content-Type-Options": "nosniff"
+}
+cookies  : {}
+encoding : None
+content_type : application/json
+body     : {
+    "status": 10022,
+    "message": "event id already exists"
+}
+
+2020-08-16 21:48:52.819 | INFO     | httprunner.client:request:218 - status_code: 200, response_time(ms): 3.99 ms, response_length: 0 bytes
+2020-08-16 21:48:52.820 | INFO     | httprunner.response:extract:176 - extract mapping: {'result': {'status': 10022, 'message': 'event id already exists'}}
+2020-08-16 21:48:52.820 | ERROR    | httprunner.response:validate:263 - assert body.status equal 10200(int)	==> fail
+check_item: body.status
+check_value: 10022(int)
+assert_method: equal
+expect_value: 10200(int)
+2020-08-16 21:48:52.821 | ERROR    | httprunner.response:validate:263 - assert body.message equal add event success(str)	==> fail
+check_item: body.message
+check_value: event id already exists(str)
+assert_method: equal
+expect_value: add event success(str)
+2020-08-16 21:48:52.822 | ERROR    | httprunner.runner:log_req_resp_details:194 - 
+******************************** DETAILED REQUEST & RESPONSE ********************************
+====== request details ======
+url: http://127.0.0.1:8000/api/add_event/
+method: POST
+headers: {'HRUN-Request-ID': 'HRUN-defd68f4-723a-4d2d-a6e1-f21f8b5d5f3b-732813'}
+params: {}
+data: {'eid': 21, 'name': 'oneplus', 'limit': 2000, 'address': 'shenzhen', 'start_time': '2017-05-10 12:00:00'}
+cookies: {}
+timeout: 120
+allow_redirects: True
+verify: False
+json: None
+
+====== response details ======
+status_code: 200
+headers: {'Date': 'Sun, 16 Aug 2020 13:48:52 GMT', 'Server': 'WSGIServer/0.2 CPython/3.7.7', 'Content-Type': 'application/json', 'X-Frame-Options': 'DENY', 'Content-Length': '55', 'X-Content-Type-Options': 'nosniff'}
+body: '{"status": 10022, "message": "event id already exists"}'
+
