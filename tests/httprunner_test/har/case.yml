@@ -1,0 +1,38 @@
+config:
+    name: testcase description
+    variables: {}
+    verify: false
+teststeps:
+-   name: /api/v1/hello/
+    request:
+        cookies:
+            csrftoken: tASlfFedIVU7AVFcEH0C7hEyQMcTrZ6l0mfBYraFj5sbMad9wWH8TPJeirD0GALa
+        headers:
+            Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9
+            Accept-Encoding: gzip, deflate, br
+            Accept-Language: zh-CN,zh;q=0.9
+            Connection: keep-alive
+            Cookie: csrftoken=tASlfFedIVU7AVFcEH0C7hEyQMcTrZ6l0mfBYraFj5sbMad9wWH8TPJeirD0GALa
+            Host: 127.0.0.1:8000
+            Sec-Fetch-Dest: document
+            Sec-Fetch-Mode: navigate
+            Sec-Fetch-Site: none
+            Sec-Fetch-User: ?1
+            Upgrade-Insecure-Requests: '1'
+            User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36
+                (KHTML, like Gecko) Chrome/84.0.4147.125 Safari/537.36
+        method: GET
+        url: http://127.0.0.1:8000/api/v1/hello/
+    validate:
+    -   eq:
+        - status_code
+        - 200
+    -   eq:
+        - headers.Content-Type
+        - application/json
+    -   eq:
+        - body.code
+        - 10200
+    -   eq:
+        - body.message
+        - success

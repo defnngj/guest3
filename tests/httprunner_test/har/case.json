@@ -1,0 +1,20 @@
+{
+    "config": {
+        "name": "testcase description",
+        "variables": {},
+        "verify": false
+    },
+    "teststeps": [
+        {
+            "name": "/api/v1/hello/",
+            "request": {
+                "url": "http://127.0.0.1:8000/api/v1/hello/",
+                "method": "GET"
+            },
+            "validate": [
+                {"eq": ["body.code", 10200]},
+                {"eq": ["body.message", "success"]}
+            ]
+        }
+    ]
+}

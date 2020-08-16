@@ -1,0 +1,92 @@
+2020-08-16 23:49:31.175 | INFO     | httprunner.runner:test_start:451 - Start to run testcase: basic test config, TestCase ID: f7c2d14d-7dd4-414d-9a44-c05b76c960c9
+2020-08-16 23:49:31.177 | INFO     | httprunner.runner:__run_step:292 - run step begin:  test_login >>>>>>
+2020-08-16 23:49:31.182 | DEBUG    | httprunner.client:request:186 - client IP: 127.0.0.1, Port: 62069
+2020-08-16 23:49:31.183 | DEBUG    | httprunner.client:request:194 - server IP: 127.0.0.1, Port: 8000
+2020-08-16 23:49:31.184 | DEBUG    | httprunner.client:log_print:40 - 
+================== request details ==================
+method   : POST
+url      : http://127.0.0.1:8000/api/v1/login/
+headers  : {
+    "User-Agent": "python-requests/2.22.0",
+    "Accept-Encoding": "gzip, deflate",
+    "Accept": "*/*",
+    "Connection": "keep-alive",
+    "HRUN-Request-ID": "HRUN-f7c2d14d-7dd4-414d-9a44-c05b76c960c9-971178",
+    "Content-Length": "28",
+    "Content-Type": "application/x-www-form-urlencoded"
+}
+cookies  : {}
+body     : username=admin&password=a123
+
+2020-08-16 23:49:31.185 | DEBUG    | httprunner.client:log_print:40 - 
+================== response details ==================
+status_code : 200
+headers  : {
+    "Date": "Sun, 16 Aug 2020 15:49:31 GMT",
+    "Server": "WSGIServer/0.2 CPython/3.7.7",
+    "Content-Type": "application/json",
+    "X-Frame-Options": "DENY",
+    "Content-Length": "136",
+    "X-Content-Type-Options": "nosniff"
+}
+cookies  : {}
+encoding : None
+content_type : application/json
+body     : {
+    "code": 10200,
+    "message": "\u767b\u5f55\u6210\u529f",
+    "data": {
+        "token": "3d80caXELzU1aWmHwxl0TzW7jtterObm8l5EeAfipnhyaKmhFl8KdhFRvy4"
+    }
+}
+
+2020-08-16 23:49:31.186 | INFO     | httprunner.client:request:218 - status_code: 200, response_time(ms): 4.01 ms, response_length: 0 bytes
+2020-08-16 23:49:31.186 | INFO     | httprunner.response:extract:176 - extract mapping: {'token': '3d80caXELzU1aWmHwxl0TzW7jtterObm8l5EeAfipnhyaKmhFl8KdhFRvy4'}
+2020-08-16 23:49:31.187 | INFO     | httprunner.response:validate:246 - assert body.code equal 10200(int)	==> pass
+2020-08-16 23:49:31.187 | INFO     | httprunner.response:validate:246 - assert body.message equal 登录成功(str)	==> pass
+2020-08-16 23:49:31.187 | INFO     | httprunner.runner:__run_step:304 - run step end:  test_login <<<<<<
+
+2020-08-16 23:49:31.188 | INFO     | httprunner.runner:__run_step:292 - run step begin:  test_luck_draw >>>>>>
+2020-08-16 23:49:31.192 | DEBUG    | httprunner.client:request:186 - client IP: 127.0.0.1, Port: 62069
+2020-08-16 23:49:31.193 | DEBUG    | httprunner.client:request:194 - server IP: 127.0.0.1, Port: 8000
+2020-08-16 23:49:31.193 | DEBUG    | httprunner.client:log_print:40 - 
+================== request details ==================
+method   : POST
+url      : http://127.0.0.1:8000/api/v1/luck_draw/
+headers  : {
+    "User-Agent": "python-requests/2.22.0",
+    "Accept-Encoding": "gzip, deflate",
+    "Accept": "*/*",
+    "Connection": "keep-alive",
+    "HRUN-Request-ID": "HRUN-f7c2d14d-7dd4-414d-9a44-c05b76c960c9-971189",
+    "Content-Length": "65",
+    "Content-Type": "application/x-www-form-urlencoded"
+}
+cookies  : {}
+body     : token=3d80caXELzU1aWmHwxl0TzW7jtterObm8l5EeAfipnhyaKmhFl8KdhFRvy4
+
+2020-08-16 23:49:31.194 | DEBUG    | httprunner.client:log_print:40 - 
+================== response details ==================
+status_code : 200
+headers  : {
+    "Date": "Sun, 16 Aug 2020 15:49:31 GMT",
+    "Server": "WSGIServer/0.2 CPython/3.7.7",
+    "Content-Type": "application/json",
+    "X-Frame-Options": "DENY",
+    "Content-Length": "133",
+    "X-Content-Type-Options": "nosniff"
+}
+cookies  : {}
+encoding : None
+content_type : application/json
+body     : {
+    "code": 10200,
+    "message": "\u5f88\u9057\u61be\uff0c\u4f60\u6ca1\u6709\u4e2d\u5956\uff01\u5df2\u7ecf\u62bd\u4e861\u6b21",
+    "data": []
+}
+
+2020-08-16 23:49:31.195 | INFO     | httprunner.client:request:218 - status_code: 200, response_time(ms): 3.01 ms, response_length: 0 bytes
+2020-08-16 23:49:31.195 | INFO     | httprunner.response:extract:176 - extract mapping: {'result': {'code': 10200, 'message': '很遗憾，你没有中奖！已经抽了1次', 'data': []}}
+2020-08-16 23:49:31.196 | INFO     | httprunner.response:validate:246 - assert body.code equal 10200(int)	==> pass
+2020-08-16 23:49:31.196 | INFO     | httprunner.runner:__run_step:304 - run step end:  test_luck_draw <<<<<<
+

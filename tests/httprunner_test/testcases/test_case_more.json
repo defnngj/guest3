@@ -1,0 +1,48 @@
+{
+     
+    "config": {
+        "name": "basic test config(测试接口的依赖)",
+        "base_url": "http://127.0.0.1:8000/api/v1",
+        "variables": {
+            "user": "${username()}",
+            "pawd": "${password()}"
+        },
+        "export": [
+            "token"
+        ],
+        "validate": [
+            {"eq": ["status_code", 200]}
+        ]
+    },
+
+    "teststeps": [
+        { 
+            "name": " test_login",
+            "request": {
+                "url": "/login/",
+                "method": "POST",
+                "data":{"username": "$user", "password": "$pawd"}
+            },
+            "extract": {
+                "token": "body.data.token"
+            },
+            "validate": [
+                {"eq": ["body.code", 10200]},
+                {"eq": ["body.message", "登录成功"]}
+            ]
+            
+        },
+        {
+            "name": " test_luck_draw",
+            "request": {
+                "url": "/luck_draw/",
+                "method": "POST",
+                "data":{"token": "$token" }
+            },
+            "validate": [
+                {"eq": ["body.code", 10200]}
+            ]
+        }
+        
+    ]   
+}
