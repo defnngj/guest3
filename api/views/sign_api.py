@@ -143,7 +143,7 @@ def get_guest_list(request):
                     "sign": r.sign,
                 }
                 datas.append(guest_dict)
-            return JsonResponse({'status': 200, 'message': 'success', 'data': datas})
+            return JsonResponse({'status': 10200, 'message': 'success', 'data': datas})
         else:
             return JsonResponse({'status': 10022, 'message': 'query result is empty'})
 
@@ -158,7 +158,7 @@ def get_guest_list(request):
             guest['phone'] = result.phone
             guest['email'] = result.email
             guest['sign'] = result.sign
-            return JsonResponse({'status': 200, 'message': 'success', 'data': guest})
+            return JsonResponse({'status': 10200, 'message': 'success', 'data': guest})
 
 
 # 用户签到接口
